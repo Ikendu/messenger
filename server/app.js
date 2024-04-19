@@ -10,8 +10,14 @@ const io = new Server(server, {
   },
 });
 
-app.get(`/test`, (req, res) => {
-  res.write(`hello new app`);
+io.on(`connection`, (socket) => {
+  console.log(`socket is connected`);
+
+  socket.on(`chat`, (chat) => {
+    io.emit(`chat`, chat);
+  });
+
+  socket.on(`disconnect`, () => console.log(`socket disconnected`));
 });
 
-app.listen(5000, () => console.log(`Listening at port 5000`));
+server.listen(5000, () => console.log(`Listening at port 5000`));
