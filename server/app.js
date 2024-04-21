@@ -17,7 +17,7 @@ io.on(`connection`, (socket) => {
     io.emit(`chat`, chat);
   });
 
-  socket.on(`disconnect`, () => console.log(`socket disconnected`));
+  socket.on(`disconnect`, () => console.log(`socket is disconnected`));
 });
 
 server.listen(5000, () => console.log(`Listening at port 5000`));

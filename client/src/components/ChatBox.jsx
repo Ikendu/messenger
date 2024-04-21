@@ -1,8 +1,8 @@
-import { Avatar, Image, message } from "antd";
+import { Avatar, Image } from "antd";
 
-export function ChatBoxReciever({ avatar, user, message }) {
+export function ChatBoxReciever({ key, avatar, user, message }) {
   return (
-    <div className="flex gap-2 justify-start mx-2">
+    <div key={key} className="flex gap-2 justify-start mx-2">
       <Avatar
         size={50}
         src={
@@ -23,7 +23,7 @@ export function ChatBoxReciever({ avatar, user, message }) {
 
 export function ChatBoxSender({ avatar, user, message }) {
   return (
-    <div className="flex gap-2 flex-row-reverse  mx-2">
+    <div className="flex gap-2 flex-row-reverse mx-2">
       <Avatar
         size={50}
         src={

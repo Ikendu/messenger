@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import socketIOClient from "socket.io-client";
 import UserLogin from "./UserLogin";
 import { ChatBoxReciever, ChatBoxSender } from "./ChatBox";
+import InputText from "./InputText";
 
 function ChatContainer() {
   const socketio = socketIOClient(`http://localhost:5000`);
@@ -35,37 +36,48 @@ function ChatContainer() {
 
   function ChatsList() {
     return chats.map((chat, index) => {
-      chat.user === user ? (
-        <ChatBoxSender
-          key={index}
-          message={chat.message}
-          avatar={chat.avatar}
-        />
-      ) : (
-        <ChatBoxReciever
-          key={index}
-          message={chat.message}
-          avatar={chat.avatar}
-        />
+      if (chat.user === user)
+        return (
+          <div>
+            <ChatBoxSender
+              key={index}
+              message={chat.message}
+              avatar={chat.avatar}
+              user={chat.user}
+            />
+          </div>
+        );
+      return (
+        <div>
+          <ChatBoxReciever
+            key={index}
+            message={chat.message}
+            avatar={chat.avatar}
+            user={chat.user}
+          />
+        </div>
       );
     });
   }
 
   return (
     <div>
-      user?
-      <div>
-        <header className="flex justify-between">
-          <p>User name: {user}</p>
-          <button className="bg-red-500 p-2 px-5" onClick={logUserOut}>
-            Logout
-          </button>
-        </header>
-      </div>
-      :
-      <div>
-        <UserLogin setUser={setUser} />
-      </div>
+      {user ? (
+        <div>
+          <header className="flex justify-between">
+            <p>User name: {user}</p>
+            <button className="bg-red-500 p-2 px-5" onClick={logUserOut}>
+              Logout
+            </button>
+          </header>
+          <ChatsList />
+          <InputText addMessage={addMessage} />
+        </div>
+      ) : (
+        <div>
+          <UserLogin setUser={setUser} />
+        </div>
+      )}
     </div>
   );
 }
