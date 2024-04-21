@@ -13,7 +13,7 @@ function ChatContainer() {
 
   useEffect(() => {
     socketio.on(`chat`, (senderChats) => {
-      setUser(senderChats);
+      setChats(senderChats);
     });
   }, []);
 
@@ -22,6 +22,7 @@ function ChatContainer() {
   }
 
   function addMessage(chat) {
+    console.log(chats);
     const newChat = { ...chat, user, avatar };
     setChats([...chats, newChat]);
     sendChatToSocket([...chats, newChat]);

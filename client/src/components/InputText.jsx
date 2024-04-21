@@ -4,7 +4,7 @@ function InputText({ addMessage }) {
   const [message, setMessege] = useState(``);
 
   function handleClick() {
-    if (message) addMessage(message);
+    if (message) addMessage({ message });
     else console.log(`no message`);
     setMessege(``);
   }
