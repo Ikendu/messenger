@@ -9,10 +9,20 @@ function ChatContainer() {
   const [avatar, setAvatar] = useState(localStorage.getItem(`avatar`));
 
   useEffect(() => {
-    socketio.on(`chat`, (senderChat) => {
-      setUser(senderChat);
+    socketio.on(`chat`, (senderChats) => {
+      setUser(senderChats);
     });
   }, []);
+
+  function sendChatToSocket(chat) {
+    socketio.emit(`chat`, chat);
+  }
+
+  function addMessage(chat) {
+    const newChat = { ...chat, user, avatar };
+    setChats([...chats, newChat]);
+    sendChatToSocket([...chats, newChat]);
+  }
 
   return <div>hello</div>;
 }
