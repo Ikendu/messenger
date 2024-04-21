@@ -1,4 +1,9 @@
 import { ChatBoxReciever, ChatBoxSender } from "./components/ChatBox";
+import InputText from "./components/InputText";
+
+function addMessage(message) {
+  console.log(message);
+}
 
 function App() {
   return (
@@ -14,6 +19,7 @@ function App() {
         message={`hello my dear`}
         user={`Victor`}
       />
+      <InputText addMessage={addMessage} />
     </div>
   );
 }
