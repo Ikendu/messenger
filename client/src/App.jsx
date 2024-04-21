@@ -1,5 +1,6 @@
 import { ChatBoxReciever, ChatBoxSender } from "./components/ChatBox";
 import InputText from "./components/InputText";
+import UserLogin from "./components/UserLogin";
 
 function addMessage(message) {
   console.log(message);
@@ -8,6 +9,7 @@ function addMessage(message) {
 function App() {
   return (
     <div className=" bg-slate-300 h-screen">
+      <UserLogin />
       <h1 className="font-bold text-2xl">Life Chat</h1>
       <ChatBoxReciever
         avatar={`https://picsum.photos/200/300`}

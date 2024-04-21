@@ -3,7 +3,7 @@ import { useState } from "react";
 function InputText({ addMessage }) {
   const [message, setMessege] = useState(``);
   function handleClick() {
-    addMessage(message);
+    addMessage({ message });
     setMessege(``);
   }
   return (
