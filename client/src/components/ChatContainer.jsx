@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import socketIOClient from "socket.io-client";
+import UserLogin from "./UserLogin";
 
 function ChatContainer() {
   const socketio = socketIOClient(`http://localhost:5000`);
@@ -24,6 +25,29 @@ function ChatContainer() {
     sendChatToSocket([...chats, newChat]);
   }
 
-  return <div>hello</div>;
+  function logUserOut() {
+    localStorage.removeItem(`user`);
+    localStorage.removeItem(`avater`);
+    setUser(``);
+    // window.location.reload();
+  }
+
+  return (
+    <div>
+      user?
+      <div>
+        <header className="flex justify-between">
+          <p>User name: {user}</p>
+          <button className="bg-red-500 p-2 px-5" onClick={logUserOut}>
+            Logout
+          </button>
+        </header>
+      </div>
+      :
+      <div>
+        <UserLogin setUser={setUser} />
+      </div>
+    </div>
+  );
 }
 export default ChatContainer;

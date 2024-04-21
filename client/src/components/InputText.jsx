@@ -2,8 +2,10 @@ import { useState } from "react";
 
 function InputText({ addMessage }) {
   const [message, setMessege] = useState(``);
+
   function handleClick() {
-    addMessage({ message });
+    if (message) addMessage({ message });
+    else console.log(`no message`);
     setMessege(``);
   }
   return (
